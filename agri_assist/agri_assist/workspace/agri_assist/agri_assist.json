@@ -1,0 +1,173 @@
+{
+ "charts": [],
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Agri Assist</b></span>\", \"col\": 12}}, {\"type\": \"paragraph\", \"data\": {\"text\": \"A comprehensive, AI-powered digital platform for farmers \\u2014 manage profiles, market prices, marketplace, knowledge hub, community, and finances.\", \"col\": 12}}, {\"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h5\\\"><b>Farmer Management</b></span>\", \"col\": 12}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Farmer\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Buyer\", \"col\": 4}}, {\"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h5\\\"><b>Market Intelligence</b></span>\", \"col\": 12}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Commodity\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Price Forecast\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Marketplace Item\", \"col\": 4}}, {\"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h5\\\"><b>Knowledge & Community</b></span>\", \"col\": 12}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Knowledge Article\", \"col\": 4}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Community Post\", \"col\": 4}}, {\"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h5\\\"><b>Finance</b></span>\", \"col\": 12}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Finance Transaction\", \"col\": 4}}]",
+ "creation": "2024-03-13 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "agriculture",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Agri Assist",
+ "links": [
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agri Farmer",
+   "link_count": 0,
+   "link_to": "Agri Farmer",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agri Buyer",
+   "link_count": 0,
+   "link_to": "Agri Buyer",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agri Commodity",
+   "link_count": 0,
+   "link_to": "Agri Commodity",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agri Price Forecast",
+   "link_count": 0,
+   "link_to": "Agri Price Forecast",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agri Marketplace Item",
+   "link_count": 0,
+   "link_to": "Agri Marketplace Item",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agri Knowledge Article",
+   "link_count": 0,
+   "link_to": "Agri Knowledge Article",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agri Community Post",
+   "link_count": 0,
+   "link_to": "Agri Community Post",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Agri Finance Transaction",
+   "link_count": 0,
+   "link_to": "Agri Finance Transaction",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-03-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Agri Assist",
+ "name": "Agri Assist",
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 30,
+ "shortcuts": [
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Agri Farmer",
+   "link_to": "Agri Farmer",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Agri Buyer",
+   "link_to": "Agri Buyer",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "List",
+   "label": "Agri Commodity",
+   "link_to": "Agri Commodity",
+   "type": "DocType"
+  },
+  {
+   "color": "Yellow",
+   "doc_view": "List",
+   "label": "Agri Price Forecast",
+   "link_to": "Agri Price Forecast",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Agri Marketplace Item",
+   "link_to": "Agri Marketplace Item",
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "doc_view": "List",
+   "label": "Agri Knowledge Article",
+   "link_to": "Agri Knowledge Article",
+   "type": "DocType"
+  },
+  {
+   "color": "Purple",
+   "doc_view": "List",
+   "label": "Agri Community Post",
+   "link_to": "Agri Community Post",
+   "type": "DocType"
+  },
+  {
+   "color": "Red",
+   "doc_view": "List",
+   "label": "Agri Finance Transaction",
+   "link_to": "Agri Finance Transaction",
+   "type": "DocType"
+  }
+ ],
+ "title": "Agri Assist"
+}
