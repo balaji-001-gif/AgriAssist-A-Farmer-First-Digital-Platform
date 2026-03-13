@@ -1,122 +1,152 @@
 {% extends "templates/web.html" %}
 
-{% block style %}
+{% block title %}Ask Synth - AI Agronomist{% endblock %}
+
+{% block page_content %}
 <style>
     .synth-container {
-        padding: 40px 20px;
-        max-width: 800px;
+        padding: 30px 20px;
+        max-width: 700px;
         margin: auto;
     }
 
     .ai-box {
-        background-color: #2d2d2d;
-        border-radius: 20px;
+        background: #ffffff;
+        border-radius: 16px;
         padding: 30px;
-        border: 1px solid rgba(255,255,255,0.05);
-        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
 
-    .upload-btn-wrapper {
-        position: relative;
-        overflow: hidden;
-        display: inline-block;
-        width: 100%;
-        margin: 20px 0;
-    }
+    .ai-box h2 { color: #2ecc71; margin: 0 0 8px 0; }
+    .ai-box > p { color: #636e72; font-size: 14px; margin: 0 0 20px 0; }
 
     .btn-upload {
-        border: 2px dashed #444;
-        color: #888;
-        background-color: transparent;
-        padding: 40px;
+        border: 2px dashed #ccc;
+        color: #999;
+        background: transparent;
+        padding: 30px;
         border-radius: 10px;
-        font-size: 16px;
-        font-weight: bold;
+        font-size: 14px;
         width: 100%;
         cursor: pointer;
         transition: all 0.3s;
+        margin-bottom: 15px;
     }
 
-    .btn-upload:hover {
-        border-color: #2ecc71;
-        color: #2ecc71;
+    .btn-upload:hover { border-color: #2ecc71; color: #2ecc71; }
+
+    #query-input {
+        width: 100%;
+        background: #f8f9fa;
+        border: 1px solid #e0e0e0;
+        color: #2d3436;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        resize: vertical;
+        min-height: 80px;
     }
+
+    .btn-diagnose {
+        background: #2ecc71;
+        border: none;
+        width: 100%;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 10px;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .btn-diagnose:hover { background: #27ae60; }
 
     .response-area {
-        background: rgba(0,0,0,0.2);
+        background: #f8f9fa;
         padding: 20px;
         border-radius: 10px;
-        margin-top: 30px;
-        min-height: 100px;
+        margin-top: 20px;
         display: none;
+        border: 1px solid #e0e0e0;
     }
 
-    .shimmer {
-        animation: shimmer 1.5s infinite linear;
-        background: linear-gradient(to right, #2d2d2d 4%, #3d3d3d 25%, #2d2d2d 36%);
-        background-size: 1000px 100%;
+    .response-area strong { color: #2ecc71; display: block; margin-bottom: 10px; }
+
+    .loading-bar {
+        height: 14px;
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+        border-radius: 6px;
+        margin-bottom: 8px;
     }
 
     @keyframes shimmer {
-        0% { background-position: -1000px 0; }
-        100% { background-position: 1000px 0; }
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
     }
 </style>
-{% endblock %}
 
-{% block content %}
 <div class="synth-container">
     <div class="ai-box">
-        <h2 style="color: #2ecc71; margin-bottom: 10px;">Ask Synth</h2>
+        <h2>🌿 Ask Synth</h2>
         <p>Your AI-powered agronomic expert. Upload a photo or describe the issue.</p>
 
-        <div class="upload-btn-wrapper">
-            <button class="btn-upload" onclick="document.getElementById('file-input').click()">
-                <i class="fa fa-camera" style="font-size: 24px; display: block; margin-bottom: 10px;"></i>
-                Click to upload Crop Photo
-            </button>
-            <input type="file" id="file-input" style="display:none" onchange="handleFile(this)">
-        </div>
+        <button class="btn-upload" onclick="document.getElementById('file-input').click()">
+            📷 Click to upload Crop Photo
+        </button>
+        <input type="file" id="file-input" style="display:none" accept="image/*" onchange="handleFile(this)">
+        <div id="file-name" style="font-size: 13px; color: #636e72; margin-bottom: 10px; display: none;"></div>
 
-        <textarea id="query-input" placeholder="Describe the symptoms or ask a question..." 
-                  style="width: 100%; background: #1a1a1a; border: 1px solid #444; color: white; padding: 15px; border-radius: 10px; margin-bottom: 15px;"></textarea>
+        <textarea id="query-input" placeholder="Describe the symptoms or ask a question (e.g., 'yellow spots on rice leaves')..."></textarea>
 
-        <button class="btn-primary" id="ask-btn" style="width: 100%; padding: 15px; font-size: 18px;" onclick="askAIAgronomist()">Get Diagnosis</button>
+        <button class="btn-diagnose" id="ask-btn" onclick="askAI()">Get Diagnosis</button>
 
         <div id="ai-response" class="response-area">
-            <strong style="color: #2ecc71; display: block; margin-bottom: 10px;">Synth's Analysis:</strong>
+            <strong>Synth's Analysis:</strong>
             <div id="response-text"></div>
         </div>
     </div>
 </div>
 
 <script>
-    function askAIAgronomist() {
-        const query = document.getElementById('query-input').value;
-        const responseArea = document.getElementById('ai-response');
-        const responseText = document.getElementById('response-text');
-        
-        if (!query) return alert("Please enter a query");
+    function askAI() {
+        var query = document.getElementById('query-input').value;
+        var responseArea = document.getElementById('ai-response');
+        var responseText = document.getElementById('response-text');
+
+        if (!query) {
+            frappe.msgprint("Please enter a query or describe the issue.");
+            return;
+        }
 
         responseArea.style.display = 'block';
-        responseText.innerHTML = '<div class="shimmer" style="height: 20px; width: 100%; margin-bottom: 10px;"></div><div class="shimmer" style="height: 20px; width: 80%;"></div>';
+        responseText.innerHTML = '<div class="loading-bar" style="width:100%"></div><div class="loading-bar" style="width:75%"></div>';
 
         frappe.call({
-            method: "agri_assist.agri_assist.api.ask_synth",
+            method: "agri_assist.api.ask_synth",
             args: { query: query },
             callback: function(r) {
                 if (r.message && r.message.status === 'success') {
-                    responseText.innerText = r.message.response;
+                    responseText.innerHTML = '<p style="color: #2d3436; line-height: 1.6;">' + r.message.response + '</p>';
                 } else {
-                    responseText.innerText = "Error getting response.";
+                    responseText.innerHTML = '<p style="color: #e74c3c;">Could not get a response. Please try again.</p>';
                 }
+            },
+            error: function() {
+                responseText.innerHTML = '<p style="color: #e74c3c;">Connection error. Please check your internet and try again.</p>';
             }
         });
     }
 
     function handleFile(input) {
         if (input.files && input.files[0]) {
-            alert("File selected: " + input.files[0].name + ". In a real app, this would be uploaded to Frappe and sent to Gemini.");
+            var el = document.getElementById('file-name');
+            el.style.display = 'block';
+            el.innerText = '📎 Selected: ' + input.files[0].name;
         }
     }
 </script>
