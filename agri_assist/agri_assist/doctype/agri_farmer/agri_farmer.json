@@ -18,7 +18,6 @@
   "farm_location",
   "farm_size",
   "soil_type",
-  "active_crops",
   "subscription_tier",
   "pro_features_section",
   "wallet_balance",
@@ -67,12 +66,6 @@
    "fieldtype": "Select",
    "label": "Soil Type",
    "options": "Alluvial\nBlack\nRed\nLaterite\nDesert\nClayey\nLoamy"
-  },
-  {
-   "fieldname": "active_crops",
-   "fieldtype": "Table",
-   "label": "Current Active Crops",
-   "options": "Agri Farmer Crop"
   },
   {
    "fieldname": "subscription_tier",
