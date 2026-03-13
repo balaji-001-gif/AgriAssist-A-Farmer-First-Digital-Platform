@@ -74,5 +74,6 @@
  "read_only": 0,
  "sort_field": "modified",
  "sort_order": "DESC",
- "track_changes": 1
+ "track_changes": 1,
+ "autoname": "AGRI-POST-.#####"
 }
