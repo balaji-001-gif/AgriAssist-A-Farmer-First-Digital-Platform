@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 0,
+ "allow_guest_to_view": 0,
+ "allow_import": 0,
+ "allow_rename": 0,
+ "creation": "2024-03-13 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "commodity_name",
+  "category",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "commodity_name",
+   "fieldtype": "Data",
+   "label": "Commodity Name",
+   "unique": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "Cereal\nPulse\nVegetable\nFruit\nSpices\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "index_pages": [],
+ "is_submittable": 0,
+ "links": [],
+ "modified": "2024-03-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Agri Assist",
+ "name": "Agri Commodity",
+ "name_case": "",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "read_only": 0,
+ "rev_links": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 0,
+ "track_views": 0
+}

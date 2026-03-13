@@ -1,0 +1,123 @@
+{% extends "templates/web.html" %}
+
+{% block style %}
+<style>
+    .synth-container {
+        padding: 40px 20px;
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .ai-box {
+        background-color: #2d2d2d;
+        border-radius: 20px;
+        padding: 30px;
+        border: 1px solid rgba(255,255,255,0.05);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .btn-upload {
+        border: 2px dashed #444;
+        color: #888;
+        background-color: transparent;
+        padding: 40px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .btn-upload:hover {
+        border-color: #2ecc71;
+        color: #2ecc71;
+    }
+
+    .response-area {
+        background: rgba(0,0,0,0.2);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 30px;
+        min-height: 100px;
+        display: none;
+    }
+
+    .shimmer {
+        animation: shimmer 1.5s infinite linear;
+        background: linear-gradient(to right, #2d2d2d 4%, #3d3d3d 25%, #2d2d2d 36%);
+        background-size: 1000px 100%;
+    }
+
+    @keyframes shimmer {
+        0% { background-position: -1000px 0; }
+        100% { background-position: 1000px 0; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="synth-container">
+    <div class="ai-box">
+        <h2 style="color: #2ecc71; margin-bottom: 10px;">Ask Synth</h2>
+        <p>Your AI-powered agronomic expert. Upload a photo or describe the issue.</p>
+
+        <div class="upload-btn-wrapper">
+            <button class="btn-upload" onclick="document.getElementById('file-input').click()">
+                <i class="fa fa-camera" style="font-size: 24px; display: block; margin-bottom: 10px;"></i>
+                Click to upload Crop Photo
+            </button>
+            <input type="file" id="file-input" style="display:none" onchange="handleFile(this)">
+        </div>
+
+        <textarea id="query-input" placeholder="Describe the symptoms or ask a question..." 
+                  style="width: 100%; background: #1a1a1a; border: 1px solid #444; color: white; padding: 15px; border-radius: 10px; margin-bottom: 15px;"></textarea>
+
+        <button class="btn-primary" id="ask-btn" style="width: 100%; padding: 15px; font-size: 18px;" onclick="askAIAgronomist()">Get Diagnosis</button>
+
+        <div id="ai-response" class="response-area">
+            <strong style="color: #2ecc71; display: block; margin-bottom: 10px;">Synth's Analysis:</strong>
+            <div id="response-text"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function askAIAgronomist() {
+        const query = document.getElementById('query-input').value;
+        const responseArea = document.getElementById('ai-response');
+        const responseText = document.getElementById('response-text');
+        
+        if (!query) return alert("Please enter a query");
+
+        responseArea.style.display = 'block';
+        responseText.innerHTML = '<div class="shimmer" style="height: 20px; width: 100%; margin-bottom: 10px;"></div><div class="shimmer" style="height: 20px; width: 80%;"></div>';
+
+        frappe.call({
+            method: "agri_assist.agri_assist.api.ask_synth",
+            args: { query: query },
+            callback: function(r) {
+                if (r.message && r.message.status === 'success') {
+                    responseText.innerText = r.message.response;
+                } else {
+                    responseText.innerText = "Error getting response.";
+                }
+            }
+        });
+    }
+
+    function handleFile(input) {
+        if (input.files && input.files[0]) {
+            alert("File selected: " + input.files[0].name + ". In a real app, this would be uploaded to Frappe and sent to Gemini.");
+        }
+    }
+</script>
+{% endblock %}

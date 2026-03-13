@@ -1,0 +1,134 @@
+{
+ "actions": [],
+ "allow_events_in_timeline": 0,
+ "allow_guest_to_view": 0,
+ "allow_import": 0,
+ "allow_rename": 0,
+ "autoname": "format:FARMER-.#####",
+ "creation": "2024-03-13 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "farmer_name",
+  "phone_number",
+  "email",
+  "address",
+  "farm_details_section",
+  "farm_location",
+  "farm_size",
+  "soil_type",
+  "active_crops",
+  "subscription_tier",
+  "pro_features_section",
+  "wallet_balance",
+  "total_revenue"
+ ],
+ "fields": [
+  {
+   "fieldname": "farmer_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Phone",
+   "label": "Phone Number"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email Address",
+   "options": "Email"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Farm Address"
+  },
+  {
+   "fieldname": "farm_details_section",
+   "fieldtype": "Section Break",
+   "label": "Farm Details"
+  },
+  {
+   "fieldname": "farm_location",
+   "fieldtype": "Geolocation",
+   "label": "Farm Location"
+  },
+  {
+   "fieldname": "farm_size",
+   "fieldtype": "Float",
+   "label": "Farm Size (Acres)"
+  },
+  {
+   "fieldname": "soil_type",
+   "fieldtype": "Select",
+   "label": "Soil Type",
+   "options": "Alluvial\nBlack\nRed\nLaterite\nDesert\nClayey\nLoamy"
+  },
+  {
+   "fieldname": "active_crops",
+   "fieldtype": "Table",
+   "label": "Current Active Crops",
+   "options": "Agri Farmer Crop"
+  },
+  {
+   "fieldname": "subscription_tier",
+   "fieldtype": "Select",
+   "label": "Subscription Tier",
+   "options": "Free\nPro\nEnterprise",
+   "default": "Free"
+  },
+  {
+   "fieldname": "pro_features_section",
+   "fieldtype": "Section Break",
+   "label": "Pro Features",
+   "depends_on": "eval:doc.subscription_tier != 'Free'"
+  },
+  {
+   "fieldname": "wallet_balance",
+   "fieldtype": "Currency",
+   "label": "Wallet Balance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_revenue",
+   "fieldtype": "Currency",
+   "label": "Total Revenue",
+   "read_only": 1
+  }
+ ],
+ "index_pages": [],
+ "is_submittable": 0,
+ "links": [],
+ "modified": "2024-03-13 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Agri Assist",
+ "name": "Agri Farmer",
+ "name_case": "",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "read_only": 0,
+ "rev_links": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1,
+ "track_seen": 0,
+ "track_views": 0
+}
