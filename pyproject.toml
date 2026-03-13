@@ -1,0 +1,18 @@
+[project]
+name = "agri_assist"
+authors = [
+    { name = "Antigravity", email = "agri@assist.app"}
+]
+description = "A comprehensive, AI-powered digital platform for farmers"
+requires-python = ">=3.10"
+dynamic = ["version"]
+dependencies = [
+    "frappe",
+]
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.bench.app]
+app_name = "agri_assist"
