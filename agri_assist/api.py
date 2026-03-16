@@ -8,7 +8,7 @@ import json
 def ask_synth(query=None, image_data=None):
     """
     AI Agronomist logic using OpenAI Vision API (gpt-4o-mini).
-    Reads 'openai_api_key' from site_config.json.
+    Reads 'openai_api_key' from Agri Assist Settings.
     """
     if not query and not image_data:
         return {"status": "error", "error": "Query or image is required."}
