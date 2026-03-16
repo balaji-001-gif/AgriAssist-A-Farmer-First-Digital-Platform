@@ -117,29 +117,54 @@
         var query = document.getElementById('query-input').value;
         var responseArea = document.getElementById('ai-response');
         var responseText = document.getElementById('response-text');
+        var fileInput = document.getElementById('file-input');
+        var file = fileInput.files[0];
 
-        if (!query) {
-            frappe.msgprint("Please enter a query or describe the issue.");
+        if (!query && !file) {
+            frappe.msgprint("Please enter a query or upload an image.");
             return;
         }
 
         responseArea.style.display = 'block';
-        responseText.innerHTML = '<div class="loading-bar" style="width:100%"></div><div class="loading-bar" style="width:75%"></div>';
+        responseText.innerHTML = '<div class="loading-bar" style="width:100%"></div><div class="loading-bar" style="width:75%"></div><p style="color: #636e72; font-size: 13px; font-style: italic; margin-top: 10px;">Synth is analyzing your request. This may take a few moments...</p>';
 
-        frappe.call({
-            method: "agri_assist.api.ask_synth",
-            args: { query: query },
-            callback: function(r) {
-                if (r.message && r.message.status === 'success') {
-                    responseText.innerHTML = '<p style="color: #2d3436; line-height: 1.6;">' + r.message.response + '</p>';
-                } else {
-                    responseText.innerHTML = '<p style="color: #e74c3c;">Could not get a response. Please try again.</p>';
+        var executeCall = function(base64Image) {
+            frappe.call({
+                method: "agri_assist.api.ask_synth",
+                args: { 
+                    query: query,
+                    image_data: base64Image
+                },
+                callback: function(r) {
+                    if (r.message && r.message.status === 'success') {
+                        // Using marked.js if available, otherwise basic paragraph formatting
+                        let formattedText = r.message.response.replace(/\n/g, "<br>");
+                        responseText.innerHTML = '<p style="color: #2d3436; line-height: 1.6;">' + formattedText + '</p>';
+                    } else {
+                        let errMsg = (r.message && r.message.error) ? r.message.error : "Could not get a response. Please try again.";
+                        responseText.innerHTML = '<p style="color: #e74c3c;">' + errMsg + '</p>';
+                        frappe.msgprint({title: 'Error', message: errMsg, indicator: 'red'});
+                    }
+                },
+                error: function(err) {
+                    console.error("API Error", err);
+                    responseText.innerHTML = '<p style="color: #e74c3c;">Connection error. Please check your internet and try again.</p>';
                 }
-            },
-            error: function() {
-                responseText.innerHTML = '<p style="color: #e74c3c;">Connection error. Please check your internet and try again.</p>';
-            }
-        });
+            });
+        };
+
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                // e.target.result contains the base64 string: "data:image/jpeg;base64,..."
+                // We split to send only the base64 part to backend
+                let base64String = e.target.result.split(',')[1];
+                executeCall(base64String);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            executeCall(null);
+        }
     }
 
     function handleFile(input) {
