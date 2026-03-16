@@ -13,11 +13,19 @@ def ask_synth(query=None, image_data=None):
     if not query and not image_data:
         return {"status": "error", "error": "Query or image is required."}
         
-    api_key = frappe.conf.get("openai_api_key")
+    # Check if Ask Synth is enabled in Settings
+    is_enabled = frappe.db.get_single_value("Agri Assist Settings", "enable_ask_synth")
+    if not is_enabled:
+        return {
+            "status": "error",
+            "error": "Ask Synth is disabled. An administrator can enable it in Agri Assist Settings."
+        }
+        
+    api_key = frappe.db.get_single_value("Agri Assist Settings", "openai_api_key")
     if not api_key:
         return {
             "status": "error", 
-            "error": "OpenAI API key is missing. Please ask your administrator to add 'openai_api_key' to the site configuration."
+            "error": "OpenAI API key is missing. Please enter your API key in 'Agri Assist Settings'."
         }
 
     prompt = query if query else "Please analyze this crop image and identify any visible diseases, pests, or deficiencies. Provide agronomic advice."

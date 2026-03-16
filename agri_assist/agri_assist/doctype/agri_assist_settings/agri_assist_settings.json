@@ -1,0 +1,52 @@
+{
+ "actions": [],
+ "creation": "2024-03-16 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "ai_settings_section",
+  "enable_ask_synth",
+  "openai_api_key"
+ ],
+ "fields": [
+  {
+   "fieldname": "ai_settings_section",
+   "fieldtype": "Section Break",
+   "label": "AI Settings"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_ask_synth",
+   "fieldtype": "Check",
+   "label": "Enable Ask Synth (AI Agronomist)"
+  },
+  {
+   "depends_on": "eval:doc.enable_ask_synth == 1",
+   "fieldname": "openai_api_key",
+   "fieldtype": "Password",
+   "label": "OpenAI API Key"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-03-16 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Agri Assist",
+ "name": "Agri Assist Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
