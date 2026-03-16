@@ -106,7 +106,7 @@
  "module": "Agri Assist",
  "name": "Agri Assist",
  "owner": "Administrator",
- "parent_page": "",
+ "parent_page": "Home",
  "public": 1,
  "restrict_to_domain": "",
  "roles": [],
@@ -169,5 +169,7 @@
    "type": "DocType"
   }
  ],
- "title": "Agri Assist"
+ "title": "Agri Assist",
+ "is_standard": 1,
+ "onboarding_list": []
 }
