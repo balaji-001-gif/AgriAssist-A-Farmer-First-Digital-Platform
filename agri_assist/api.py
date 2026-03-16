@@ -1,5 +1,6 @@
 import frappe
 from frappe import _
+from frappe.utils.password import get_decrypted_password
 
 import requests
 import json
@@ -21,7 +22,7 @@ def ask_synth(query=None, image_data=None):
             "error": "Ask Synth is disabled. An administrator can enable it in Agri Assist Settings."
         }
         
-    api_key = frappe.db.get_single_value("Agri Assist Settings", "openai_api_key")
+    api_key = get_decrypted_password("Agri Assist Settings", "Agri Assist Settings", "openai_api_key")
     if not api_key:
         return {
             "status": "error", 
@@ -67,9 +68,12 @@ def ask_synth(query=None, image_data=None):
         response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload, timeout=60)
         
         if response.status_code == 401:
-            return {"status": "error", "error": "Invalid OpenAI API key. Please check your site configuration."}
+            frappe.log_error("OpenAI Auth Error", response.text)
+            return {"status": "error", "error": f"Invalid OpenAI API key. Please check your 'Agri Assist Settings'. Details: {response.text[:100]}"}
             
-        response.raise_for_status()
+        if not response.ok:
+            frappe.log_error("OpenAI API Error", response.text)
+            return {"status": "error", "error": f"OpenAI API Error: {response.status_code}. {response.text[:100]}"}
         
         result = response.json()
         ai_text = result["choices"][0]["message"]["content"]
