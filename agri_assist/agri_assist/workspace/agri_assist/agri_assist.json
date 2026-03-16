@@ -1,135 +1,149 @@
 {
- "creation": "2024-03-16 00:00:00.000000",
- "icon": "agriculture",
- "label": "Agri Assist",
- "title": "Agri Assist",
- "module": "Agri Assist",
- "name": "Agri Assist",
+ "charts": [],
+ "content": "[{\"id\": \"agri_header\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Agri Assist</b></span>\", \"col\": 12}}, {\"id\": \"sc_farmer\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Farmer\", \"col\": 4}}, {\"id\": \"sc_buyer\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Buyer\", \"col\": 4}}, {\"id\": \"sc_commodity\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Commodity\", \"col\": 4}}, {\"id\": \"sc_marketplace\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Marketplace Item\", \"col\": 4}}, {\"id\": \"sc_knowledge\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Agri Knowledge Article\", \"col\": 4}}]",
+ "creation": "2024-03-16 11:30:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
  "doctype": "Workspace",
- "is_standard": 1,
- "public": 1,
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "agriculture",
+ "idx": 0,
  "is_hidden": 0,
- "parent_page": null,
- "category": "Modules",
- "onboarding": "none",
- "onboarding_list": [],
- "for_user": null,
- "content": "[{\"id\": \"7e0beeb8\", \"type\": \"header\", \"data\": {\"text\": \"Agri Assist\", \"level\": 4, \"col\": 12}}, {\"id\": \"ce46bb4d\", \"type\": \"shortcuts\", \"data\": {\"col\": 12}}, {\"id\": \"e6394fe2\", \"type\": \"header\", \"data\": {\"text\": \"Detailed Access\", \"level\": 6, \"col\": 12}}, {\"id\": \"7ff2bf28\", \"type\": \"links\", \"data\": {\"col\": 12}}]",
- "shortcuts": [
-  {
-   "label": "Farmers",
-   "type": "DocType",
-   "link_to": "Agri Farmer",
-   "icon": "users",
-   "color": "Green"
-  },
-  {
-   "label": "Buyers",
-   "type": "DocType",
-   "link_to": "Agri Buyer",
-   "icon": "briefcase",
-   "color": "Blue"
-  },
-  {
-   "label": "Commodities",
-   "type": "DocType",
-   "link_to": "Agri Commodity",
-   "icon": "list",
-   "color": "Orange"
-  },
-  {
-   "label": "Marketplace",
-   "type": "DocType",
-   "link_to": "Agri Marketplace Item",
-   "icon": "shopping-cart",
-   "color": "Yellow"
-  },
-  {
-   "label": "Knowledge",
-   "type": "DocType",
-   "link_to": "Agri Knowledge Article",
-   "icon": "book-open",
-   "color": "Cyan"
-  }
- ],
+ "label": "Agri Assist",
  "links": [
   {
-   "label": "Master Records",
-   "link_type": "Section",
-   "type": "Link"
+   "label": "Farmers & Buyers",
+   "type": "Card Break",
+   "hidden": 0,
+   "is_query_report": 0,
+   "onboard": 0
   },
   {
+   "label": "Agri Farmer",
    "link_to": "Agri Farmer",
    "link_type": "DocType",
-   "label": "Farmers List",
-   "type": "Link"
+   "type": "Link",
+   "hidden": 0,
+   "is_query_report": 0,
+   "onboard": 1
   },
   {
+   "label": "Agri Buyer",
    "link_to": "Agri Buyer",
    "link_type": "DocType",
-   "label": "Buyers List",
-   "type": "Link"
+   "type": "Link",
+   "hidden": 0,
+   "is_query_report": 0,
+   "onboard": 1
   },
   {
-   "label": "Intelligence",
-   "link_type": "Section",
-   "type": "Link"
+   "label": "Market Intelligence",
+   "type": "Card Break",
+   "hidden": 0,
+   "is_query_report": 0,
+   "onboard": 0
   },
   {
+   "label": "Agri Commodity",
    "link_to": "Agri Commodity",
    "link_type": "DocType",
-   "label": "Commodities",
-   "type": "Link"
+   "type": "Link",
+   "hidden": 0,
+   "is_query_report": 0,
+   "onboard": 0
   },
   {
+   "label": "Agri Price Forecast",
    "link_to": "Agri Price Forecast",
    "link_type": "DocType",
-   "label": "Price Forecasts",
-   "type": "Link"
+   "type": "Link",
+   "hidden": 0,
+   "is_query_report": 0,
+   "onboard": 0
   },
   {
-   "label": "Market & Social",
-   "link_type": "Section",
-   "type": "Link"
-  },
-  {
+   "label": "Agri Marketplace Item",
    "link_to": "Agri Marketplace Item",
    "link_type": "DocType",
-   "label": "Marketplace Items",
-   "type": "Link"
-  },
-  {
-   "link_to": "Agri Knowledge Article",
-   "link_type": "DocType",
-   "label": "Learning Hub",
-   "type": "Link"
-  },
-  {
-   "link_to": "Agri Community Post",
-   "link_type": "DocType",
-   "label": "Community Posts",
-   "type": "Link"
+   "type": "Link",
+   "hidden": 0,
+   "is_query_report": 0,
+   "onboard": 0
   },
   {
    "label": "Reports",
-   "link_type": "Section",
-   "type": "Link"
+   "type": "Card Break",
+   "hidden": 0,
+   "is_query_report": 0,
+   "onboard": 0
   },
   {
+   "label": "Farmer Stats",
    "link_to": "Farmer Subscription Distribution",
    "link_type": "Report",
-   "label": "Farmer Stats",
-   "type": "Link"
+   "type": "Link",
+   "hidden": 0,
+   "is_query_report": 1,
+   "onboard": 0
   },
   {
+   "label": "Price Trends",
    "link_to": "Market Prices Summary",
    "link_type": "Report",
-   "label": "Price Trends",
-   "type": "Link"
+   "type": "Link",
+   "hidden": 0,
+   "is_query_report": 1,
+   "onboard": 0
   }
  ],
- "charts": [],
- "custom_blocks": [],
+ "modified": "2024-03-16 11:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Agri Assist",
+ "name": "Agri Assist",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "restrict_to_domain": "",
  "roles": [],
- "indicator_color": "green"
+ "sequence_id": 1,
+ "shortcuts": [
+  {
+   "label": "Agri Farmer",
+   "link_to": "Agri Farmer",
+   "type": "DocType",
+   "color": "Green",
+   "doc_view": "List"
+  },
+  {
+   "label": "Agri Buyer",
+   "link_to": "Agri Buyer",
+   "type": "DocType",
+   "color": "Blue",
+   "doc_view": "List"
+  },
+  {
+   "label": "Agri Commodity",
+   "link_to": "Agri Commodity",
+   "type": "DocType",
+   "color": "Orange",
+   "doc_view": "List"
+  },
+  {
+   "label": "Agri Marketplace Item",
+   "link_to": "Agri Marketplace Item",
+   "type": "DocType",
+   "color": "Yellow",
+   "doc_view": "List"
+  },
+  {
+   "label": "Agri Knowledge Article",
+   "link_to": "Agri Knowledge Article",
+   "type": "DocType",
+   "color": "Cyan",
+   "doc_view": "List"
+  }
+ ],
+ "title": "Agri Assist"
 }
